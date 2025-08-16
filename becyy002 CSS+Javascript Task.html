@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bird Gallery with Theme Toggle</title>
+  <style>
+    /* Light theme (default) */
+    :root {
+      --primary-color: #3498db;
+      --secondary-color: #2ecc71;
+      --bg-color: #f4f4f4;
+      --font-color: #333333;
+      --heading-color: #1a1a1a;
+    }
+
+    /* Dark theme */
+    [data-theme="dark"] {
+      --primary-color: #9b59b6;
+      --secondary-color: #e74c3c;
+      --bg-color: #2c3e50;
+      --font-color: #ecf0f1;
+      --heading-color: #f1c40f;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+      background-color: var(--bg-color);
+      color: var(--font-color);
+    }
+
+    h1 {
+      color: var(--heading-color);
+    }
+
+    img {
+      max-width: 100%;
+      border: 5px solid var(--secondary-color);
+      border-radius: 8px;
+    }
+
+    p {
+      background: var(--primary-color);
+      padding: 10px;
+      color: white;
+      margin-top: 5px;
+    }
+
+    .button-group {
+      margin-top: 15px;
+    }
+
+    button {
+      margin: 5px;
+      padding: 10px 14px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background: var(--secondary-color);
+      color: white;
+      font-weight: bold;
+    }
+
+    button:hover {
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body data-theme="light">
+  <main>
+    <h1>Bird Gallery</h1>
+    <img id="birdImage" src="http://www.outgrabe.net/bird00.jpg" alt="Bird">
+    <p id="birdText">Pardalote by fir0002 (CC-by-NC)</p>
+
+    <!-- Bird Buttons -->
+    <div class="button-group">
+      <button onclick="showBird('pardalote')">Pardalote</button>
+      <button onclick="showBird('swamphen')">Purple Swamp Hen</button>
+      <button onclick="showBird('stilt')">White-headed Stilt</button>
+      <button onclick="showBird('thornbill')">Inland Thornbill</button>
+      <button onclick="showBird('robin')">Rose Robin</button>
+    </div>
+
+    <!-- Theme Toggle -->
+    <div class="button-group">
+      <button onclick="toggleTheme()">Toggle Theme</button>
+    </div>
+  </main>
+
+  <script>
+    const birds = {
+      pardalote: {
+        img: "http://www.outgrabe.net/bird00.jpg",
+        text: "Pardalote by fir0002 (CC-by-NC)"
+      },
+      swamphen: {
+        img: "http://www.outgrabe.net/bird01.jpg",
+        text: "Purple swamp hen by Toby Hudson (CC-by-SA)"
+      },
+      stilt: {
+        img: "http://www.outgrabe.net/bird02.jpg",
+        text: "White-headed Stilt by JJ Harrison (CC-by-SA)"
+      },
+      thornbill: {
+        img: "http://www.outgrabe.net/bird03.jpg",
+        text: "Inland Thornbill by Peter Jacobs (CC-by-SA)"
+      },
+      robin: {
+        img: "http://www.outgrabe.net/bird04.jpg",
+        text: "Rose Robin by JJ Harrison (CC-by-SA)"
+      }
+    };
+
+    function showBird(bird) {
+      document.getElementById("birdImage").src = birds[bird].img;
+      document.getElementById("birdText").textContent = birds[bird].text;
+    }
+
+    function toggleTheme() {
+      const body = document.body;
+      const currentTheme = body.getAttribute("data-theme");
+      body.setAttribute("data-theme", currentTheme === "dark" ? "light" : "dark");
+    }
+  </script>
+</body>
+</html>
